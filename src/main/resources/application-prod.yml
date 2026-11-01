@@ -1,0 +1,59 @@
+spring:
+  shell:
+    history:
+      name: ${user.home}/.indexer/spring-shell.log
+      enabled: true
+    interactive:
+      enabled: true
+  main:
+    banner-mode: "off"
+    web-application-type: none
+  datasource:
+    url: jdbc:h2:file:~/.indexer/fileindex;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ""
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    root: WARN
+
+indexer:
+  # Only files with these extensions are indexed (no leading dot, case-insensitive).
+  extensions:
+    - txt
+    #   - md
+    - java
+    - kt
+    - xml
+    - yml
+    - yaml
+    - json
+    - properties
+    #   - sql
+    #   - csv
+    #   - log
+    #   - html
+    - js
+    - ts
+  #   - py
+  # Directory names that are never entered (case-insensitive).
+  excluded-dirs:
+    - .git
+    - .idea
+    - node_modules
+    - target
+    - build
+    - $RECYCLE.BIN
+    - System Volume Information
+    - Windows
+    - proc
+    - sys
+    - dev
+    - Android4Studio
+    - oracle
+  lucene-dir: ${user.home}/.indexer/lucene
+  max-file-size-mb: 50
+  max-results: 15
